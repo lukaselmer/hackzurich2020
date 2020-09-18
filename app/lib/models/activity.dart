@@ -6,10 +6,16 @@ class Activity {
   final String id;
   final String sport;
   final DateTime startingAt;
-  final int duration;
+  final Duration duration;
   final User user;
 
-  Activity({this.id, this.sport, this.startingAt, this.duration, this.user});
+  Activity({
+    @required this.id,
+    @required this.sport,
+    @required this.startingAt,
+    @required this.duration,
+    @required this.user,
+  });
 
   int calculateScore() {
     return 42;

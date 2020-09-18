@@ -8,12 +8,19 @@ class Challenge {
   final String challengeName;
   final String teamName;
   final DateTime startingAt;
-  final List<User> users = [];
-  final List<Activity> activities = [];
+  final List<User> users;
+  final List<Activity> activities;
 
-  Challenge({this.id, this.challengeName, this.teamName, this.startingAt});
+  Challenge({
+    @required this.id,
+    @required this.challengeName,
+    @required this.teamName,
+    @required this.startingAt,
+    @required this.users,
+    @required this.activities,
+  });
 
-  int get totalDuration => activities
+  Duration get totalDuration => activities
       .map((activity) => activity.duration)
       .reduce((value, element) => value + element);
 }
