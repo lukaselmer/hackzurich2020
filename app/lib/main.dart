@@ -9,8 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Challenge',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+        theme: ThemeData.dark().copyWith(
+          primaryColor: Colors.cyan,
+          accentColor: Colors.cyanAccent,
+          indicatorColor: Colors.white,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute: 'challenges',
