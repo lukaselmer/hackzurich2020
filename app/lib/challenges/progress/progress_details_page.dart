@@ -228,12 +228,12 @@ Iterable<Step> _toStep(Activity activity) => [
         hour: ' ',
         icon: iconFor(activity).icon,
         message: !activity.started
-            ? '''${activity.user.name} will be ${activity.sport}.\nWanna join!?'''
+            ? '''${activity.user.name} will be ${activity.sport} in ${activity.user.flag}.\nWanna join!?'''
             : activity.running
                 ? '''${activity.user.name} has already moved '''
-                    '''${activity.kmMoved} km!'''
+                    '''${activity.kmMoved} km in  ${activity.user.flag}!'''
                 : '''${activity.user.name} moved '''
-                    '''${activity.kmMoved} km!''',
+                    '''${activity.kmMoved} km in  ${activity.user.flag}!''',
         currentlyActive: activity.running,
       ),
     ];

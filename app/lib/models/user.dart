@@ -6,6 +6,7 @@ class User {
   final String username;
   final String status;
   final String profilePhoto;
+  final String flag;
 
   int state;
 
@@ -18,6 +19,7 @@ class User {
     this.status,
     this.state,
     this.profilePhoto,
+    this.flag,
   });
 
   Map<String, dynamic> toMap(User user) => <String, dynamic>{
