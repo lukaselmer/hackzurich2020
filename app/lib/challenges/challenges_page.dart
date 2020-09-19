@@ -32,7 +32,7 @@ class ChallengesPage extends StatelessWidget {
             // Fake button to add new challenge
           },
           child: Icon(Icons.add),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.cyan,
         ),
       ),
     );
