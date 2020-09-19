@@ -1,4 +1,3 @@
-import 'package:app/challenges/join_page.dart';
 import 'package:app/challenges/participants_page.dart';
 import 'package:app/challenges/progress_page.dart';
 import 'package:app/models/challenge.dart';

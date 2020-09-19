@@ -71,6 +71,8 @@ List<Activity> _activities() => [
 
 final sports = ['cycling', 'running', 'swimming'];
 
-Activity activityReadyToStart(User currentUser, Challenge challenge) {
-  // TODO: implement this
-}
+Activity activityReadyToStart(User currentUser, Challenge challenge) =>
+    challenge.activities.firstWhere(
+      (element) => element.user.id == currentUser.id && element.readyToStart,
+      orElse: () => null,
+    );
