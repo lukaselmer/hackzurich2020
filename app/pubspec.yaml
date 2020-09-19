@@ -34,6 +34,8 @@ dependencies:
   meta:
   geolocator:
   pedantic:
+  google_fonts:
+  timeline_tile:
 
 dev_dependencies:
   flutter_test:
@@ -81,9 +83,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppinsel.ttf
-        - asset: assets/fonts/poppinssb.ttf
-          weight: 400
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/poppinsel.ttf
+  #       - asset: assets/fonts/poppinssb.ttf
+  #         weight: 400
