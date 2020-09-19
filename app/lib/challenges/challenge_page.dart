@@ -14,7 +14,7 @@ class ChallengePage extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(challenge.challengeName),
+            title: Text("Challenge"),
             bottom: TabBar(
               tabs: [
                 Tab(text: 'PROGRESS'),
