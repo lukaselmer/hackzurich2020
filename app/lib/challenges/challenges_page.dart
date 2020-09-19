@@ -27,6 +27,13 @@ class ChallengesPage extends StatelessWidget {
             buildChallenges(context, myChallenges()),
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Fake button to add new challenge
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.blue,
+        ),
       ),
     );
   }
