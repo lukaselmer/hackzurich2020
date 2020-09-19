@@ -22,6 +22,7 @@ class ParticipantsPage extends StatelessWidget {
                   leading: iconFor(activity),
                   title: Text(activity.user.name),
                   subtitle: Text(_formatSubtitle(activity)),
+                  trailing: Text(activity.user.flag),
                 ),
               ),
             )

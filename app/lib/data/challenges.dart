@@ -44,10 +44,11 @@ List<Challenge> _challenges() => [
     ];
 
 List<User> _users() => [
-      User(id: '1', name: 'Marion'),
-      User(id: '2', name: 'Marco'),
-      User(id: '3', name: 'Christof'),
-      User(id: '4', name: 'Lukas'),
+      User(id: '1', name: 'Marion', flag: '🇮🇳'),
+      User(id: '2', name: 'Marco', flag: '🇮🇹'),
+      User(id: '3', name: 'Christof', flag: '🇨🇭'),
+      User(id: '4', name: 'Lukas', flag: '🇨🇭'),
+      User(id: '5', name: 'Shivam', flag: '🇮🇳'),
     ];
 
 List<Activity> _activities() => [
@@ -89,6 +90,11 @@ List<Comment> _comments() => [
         id: '3',
         userName: 'Marion',
         text: 'already tired ? 🐌 I\'m waiting 📅',
+      ),
+      Comment(
+        id: '4',
+        userName: 'Shivam',
+        text: 'You can do it! 🔥',
       ),
     ];
 
