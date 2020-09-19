@@ -8,15 +8,13 @@ class ChallengesPage extends StatelessWidget {
     return AppBase(ListView(
       children: challenges()
           .map<Widget>(
-            (challenge) => Container(
-              child: ListTile(
-                key: Key(challenge.id),
-                title: Text(challenge.challengeName),
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  'challenge',
-                  arguments: challenge,
-                ),
+            (challenge) => ListTile(
+              key: Key(challenge.id),
+              title: Text(challenge.challengeName),
+              onTap: () => Navigator.pushNamed(
+                context,
+                'challenge',
+                arguments: challenge,
               ),
             ),
           )

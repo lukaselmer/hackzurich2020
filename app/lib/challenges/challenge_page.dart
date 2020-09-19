@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class ChallengePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context).settings.arguments;
-    final challenge = args as Challenge;
+    final challenge = ModalRoute.of(context).settings.arguments as Challenge;
 
     return AppBase(Container(
       child: Text(challenge.challengeName),
