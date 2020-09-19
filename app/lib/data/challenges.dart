@@ -1,5 +1,6 @@
 import 'package:app/models/activity.dart';
 import 'package:app/models/challenge.dart';
+import 'package:app/models/comment.dart';
 import 'package:app/models/user.dart';
 
 final _useCurrentTime = true;
@@ -10,6 +11,7 @@ final _baseTime = _useCurrentTime
 List<Challenge> challenges = _challenges();
 List<User> users = _users();
 List<Activity> activities = _activities();
+List<Comment> comments = _comments();
 
 List<Challenge> _challenges() => [
       Challenge(
@@ -19,6 +21,7 @@ List<Challenge> _challenges() => [
         startsAt: _baseTime,
         users: users,
         activities: activities,
+        comments: comments,
       ),
       Challenge(
         id: '2',
@@ -27,6 +30,7 @@ List<Challenge> _challenges() => [
         startsAt: _baseTime.subtract(Duration(hours: 4)),
         users: [users[0], users[1]],
         activities: [],
+        comments: comments,
       ),
       Challenge(
         id: '3',
@@ -35,6 +39,7 @@ List<Challenge> _challenges() => [
         startsAt: _baseTime.add(Duration(hours: 5)),
         users: users,
         activities: [],
+        comments: comments,
       ),
     ];
 
@@ -68,6 +73,25 @@ List<Activity> _activities() => [
         user: users[2],
       ),
     ];
+
+List<Comment> _comments() => [
+  Comment(
+    id: '1',
+    user_id: '1',
+    text: 'Go Go go',
+  ),
+  Comment(
+    id: '2',
+    user_id: '2',
+    text: 'Duration(hours: 1, minutes: 30)',
+  ),
+  Comment(
+    id: '3',
+    user_id: '3',
+    text: 'already tired ?',
+  ),
+];
+
 
 final sports = ['cycling', 'running', 'swimming'];
 
