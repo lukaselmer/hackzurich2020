@@ -70,7 +70,7 @@ String formatTrailing(Challenge challenge) {
     );
     return 'Starts in $diff';
   }
-  if (!challenge.running) {
+  if (challenge.running) {
     final diff = printDuration(
       DateTime.now().difference(challenge.endsAt).abs(),
       abbreviated: true,

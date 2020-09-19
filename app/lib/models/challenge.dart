@@ -28,7 +28,7 @@ class Challenge {
 
   bool get started => DateTime.now().isAfter(startsAt);
 
-  bool get ended => DateTime.now().isBefore(endsAt);
+  bool get ended => DateTime.now().isAfter(endsAt);
 
   DateTime get endsAt => _lastActivity?.endsAt ?? startsAt;
 
