@@ -1,15 +1,15 @@
 import 'package:app/challenges/challenges_filter.dart';
 import 'package:app/models/challenge.dart';
-import 'package:app/resources/fbRepo.dart';
-import 'package:app/screens/loginScreen.dart';
+import 'package:app/resources/firebase_repo.dart';
+import 'package:app/screens/login_screen.dart';
 import 'package:app/util/datetime.dart';
 import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 
 class ChallengesPage extends StatelessWidget {
-  @override
-  FirebaseRepository _repository = FirebaseRepository();
+  final _repository = FirebaseRepository();
 
+  @override
   Widget build(BuildContext context) => DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -32,9 +32,7 @@ class ChallengesPage extends StatelessWidget {
                   _repository.signOut();
                   Navigator.push<MaterialPageRoute>(
                     context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => LoginScreen(),
-                    ),
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
                   );
                 },
               ),
