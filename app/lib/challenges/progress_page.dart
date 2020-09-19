@@ -7,9 +7,7 @@ class ProgressPage extends StatelessWidget {
   const ProgressPage(this.challenge);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('Progress'),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        child: Text('Progress'),
+      );
 }

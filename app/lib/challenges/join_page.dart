@@ -7,9 +7,7 @@ class JoinPage extends StatelessWidget {
   const JoinPage(this.challenge);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('Join'),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        child: Text('Join'),
+      );
 }

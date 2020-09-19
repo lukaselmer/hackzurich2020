@@ -7,7 +7,7 @@ class Challenge {
   final String id;
   final String challengeName;
   final String teamName;
-  final DateTime startingAt;
+  final DateTime startsAt;
   final List<User> users;
   final List<Activity> activities;
 
@@ -15,12 +15,22 @@ class Challenge {
     @required this.id,
     @required this.challengeName,
     @required this.teamName,
-    @required this.startingAt,
+    @required this.startsAt,
     @required this.users,
     @required this.activities,
   });
 
   Duration get totalDuration => activities
       .map((activity) => activity.duration)
-      .reduce((value, element) => value + element);
+      .fold(Duration(), (value, element) => value + element);
+
+  bool get running => started && !ended;
+
+  bool get started => DateTime.now().isAfter(startsAt);
+
+  bool get ended => DateTime.now().isBefore(endsAt);
+
+  DateTime get endsAt => _lastActivity?.endsAt ?? startsAt;
+
+  Activity get _lastActivity => activities.isEmpty ? null : activities.last;
 }

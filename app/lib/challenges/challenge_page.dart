@@ -11,29 +11,27 @@ class ChallengePage extends StatelessWidget {
     return buildChallenge(challenge);
   }
 
-  Widget buildChallenge(Challenge challenge) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(challenge.challengeName),
-          bottom: TabBar(
-            tabs: [
-              // signup, participation, statistics
-              Tab(text: 'Progress'),
-              Tab(text: 'Participants'),
-              Tab(text: 'Join'),
+  Widget buildChallenge(Challenge challenge) => DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(challenge.challengeName),
+            bottom: TabBar(
+              tabs: [
+                // signup, participation, statistics
+                Tab(text: 'Progress'),
+                Tab(text: 'Participants'),
+                Tab(text: 'Join'),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              ProgressPage(challenge),
+              ParticipantsPage(challenge),
+              JoinPage(challenge),
             ],
           ),
         ),
-        body: TabBarView(
-          children: [
-            ProgressPage(challenge),
-            ParticipantsPage(challenge),
-            JoinPage(challenge),
-          ],
-        ),
-      ),
-    );
-  }
+      );
 }
