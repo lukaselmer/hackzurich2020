@@ -1,5 +1,8 @@
+import 'package:app/challenges/activity_helpers.dart';
 import 'package:app/config/text_styles.dart';
+import 'package:app/models/activity.dart';
 import 'package:app/models/challenge.dart';
+import 'package:app/util/datetime.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timeline_tile/timeline_tile.dart';
@@ -10,25 +13,19 @@ class ProgressDetailsPage extends StatelessWidget {
   ProgressDetailsPage(this.challenge);
 
   @override
-  Widget build(BuildContext context) => Expanded(child: _ActivityTimeline());
+  Widget build(BuildContext context) => Expanded(
+        child: _ActivityTimeline(challenge),
+      );
 }
 
-class _ActivityTimeline extends StatefulWidget {
-  @override
-  _ActivityTimelineState createState() => _ActivityTimelineState();
-}
+class _ActivityTimeline extends StatelessWidget {
+  final Challenge _challenge;
 
-class _ActivityTimelineState extends State<_ActivityTimeline> {
-  List<Step> _steps;
-
-  @override
-  void initState() {
-    _steps = _generateData();
-    super.initState();
-  }
+  _ActivityTimeline(this._challenge);
 
   @override
   Widget build(BuildContext context) => Container(
+        padding: EdgeInsets.only(top: 30),
         color: const Color(0xFF1D1E20),
         child: Theme(
           data: Theme.of(context).copyWith(
@@ -41,7 +38,9 @@ class _ActivityTimelineState extends State<_ActivityTimeline> {
                 child: Column(
                   children: <Widget>[
                     Expanded(
-                      child: _TimelineActivity(steps: _steps),
+                      child: _TimelineActivity(
+                        steps: _generateSteps(_challenge),
+                      ),
                     ),
                     const SizedBox(height: 8),
                   ],
@@ -51,97 +50,6 @@ class _ActivityTimelineState extends State<_ActivityTimeline> {
           ),
         ),
       );
-
-  List<Step> _generateData() => <Step>[
-        Step(
-          type: Type.checkpoint,
-          icon: Icons.home,
-          message: 'Home',
-          duration: 2,
-          color: const Color(0xFFF2F2F2),
-        ),
-        Step(
-          type: Type.line,
-          hour: '8:38',
-          message: 'Walk',
-          duration: 9,
-          color: const Color(0xFF40C752),
-        ),
-        Step(
-          type: Type.line,
-          hour: '8:47',
-          message: 'Transport',
-          duration: 12,
-          color: const Color(0xFF797979),
-        ),
-        Step(
-          type: Type.line,
-          hour: '8:59',
-          message: 'Run',
-          duration: 3,
-          color: const Color(0xFFDF54C9),
-        ),
-        Step(
-          type: Type.checkpoint,
-          icon: Icons.work,
-          hour: '9:02',
-          message: 'Work',
-          duration: 2,
-          color: const Color(0xFFF2F2F2),
-        ),
-        Step(
-          type: Type.line,
-          hour: '12:12',
-          message: 'Walk',
-          duration: 8,
-          color: const Color(0xFF40C752),
-        ),
-        Step(
-          type: Type.checkpoint,
-          icon: Icons.local_drink,
-          hour: '12:20',
-          message: 'Coffee shop',
-          duration: 2,
-          color: const Color(0xFFF2F2F2),
-        ),
-        Step(
-          type: Type.line,
-          hour: '01:05',
-          message: 'Walk',
-          duration: 8,
-          color: const Color(0xFF40C752),
-        ),
-        Step(
-          type: Type.checkpoint,
-          icon: Icons.work,
-          hour: '01:13',
-          message: 'Work',
-          duration: 2,
-          color: const Color(0xFFF2F2F2),
-        ),
-        Step(
-          type: Type.line,
-          hour: '05:25',
-          message: 'Walk',
-          duration: 3,
-          color: const Color(0xFF40C752),
-        ),
-        Step(
-          type: Type.line,
-          hour: '05:28',
-          message: 'Cycle',
-          duration: 14,
-          color: const Color(0xFF01CBFE),
-        ),
-        Step(
-          type: Type.checkpoint,
-          hour: '05:42',
-          icon: Icons.home,
-          message: 'Home',
-          duration: 2,
-          color: const Color(0xFFF2F2F2),
-        ),
-      ];
 }
 
 class _TimelineActivity extends StatelessWidget {
@@ -212,7 +120,7 @@ class _RightChildTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final minHeight = step.isCheckpoint ? 100.0 : step.duration.toDouble() * 8;
+    final minHeight = step.isCheckpoint ? 50.0 : 70.0;
 
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: minHeight),
@@ -227,12 +135,18 @@ class _RightChildTimeline extends StatelessWidget {
               text: TextSpan(children: <TextSpan>[
                 TextSpan(
                   text: step.message,
-                  style: timelineText.apply(color: step.color),
+                  style: step.isCheckpoint
+                      ? timelineText.apply(color: step.color)
+                      : timelineText.apply(
+                          color: step.currentlyActive
+                              ? Colors.orange
+                              : Colors.white),
                 ),
-                TextSpan(
-                  text: '  ${step.duration} minX',
-                  style: timelineText.apply(color: const Color(0xFFF2F2F2)),
-                )
+                if (step.duration != null)
+                  TextSpan(
+                    text: '  ${step.duration} min',
+                    style: timelineText.apply(color: const Color(0xFFF2F2F2)),
+                  )
               ]),
             ),
           )
@@ -271,7 +185,16 @@ enum Type {
   line,
 }
 
+@immutable
 class Step {
+  final Type type;
+  final String hour;
+  final String message;
+  final int duration;
+  final Color color;
+  final IconData icon;
+  final bool currentlyActive;
+
   Step({
     this.type,
     this.hour,
@@ -279,16 +202,46 @@ class Step {
     this.duration,
     this.color,
     this.icon,
+    this.currentlyActive,
   });
-
-  final Type type;
-  final String hour;
-  final String message;
-  final int duration;
-  final Color color;
-  final IconData icon;
 
   bool get isCheckpoint => type == Type.checkpoint;
 
   bool get hasHour => hour != null && hour.isNotEmpty;
 }
+
+List<Step> _generateSteps(Challenge challenge) =>
+    [...challenge.activities.expand(_toStep), _lastStep(challenge)].toList();
+
+Iterable<Step> _toStep(Activity activity) => [
+      Step(
+        type: Type.checkpoint,
+        color: colorFor(activity),
+        duration: activity.duration.inMinutes,
+        hour: formatHourAndMinute(activity.startsAt),
+        icon: iconFor(activity).icon,
+        message: activity.sport.toUpperCase(),
+      ),
+      Step(
+        type: Type.line,
+        color: colorFor(activity),
+        hour: ' ',
+        icon: iconFor(activity).icon,
+        message: !activity.started
+            ? '''${activity.user.name} will be ${activity.sport}.\nWanna join!?'''
+            : activity.running
+                ? '''${activity.user.name} has already moved '''
+                    '''${activity.kmMoved} km!'''
+                : '''${activity.user.name} moved '''
+                    '''${activity.kmMoved} km!''',
+        currentlyActive: activity.running,
+      ),
+    ];
+
+Step _lastStep(Challenge challenge) => Step(
+      type: Type.checkpoint,
+      color: Colors.white,
+      hour: formatHourAndMinute(challenge.endsAt),
+      icon: Icons.flag_outlined,
+      message: 'DONE!!!',
+    );

@@ -33,7 +33,6 @@ class FirebaseMethods {
   }
 
   Future<void> signOut() async {
-    print('signed out start');
     await _googleSignIn.disconnect();
     await _googleSignIn.signOut();
     return await _auth.signOut();

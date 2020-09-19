@@ -19,6 +19,15 @@ class Activity {
 
   int calculateScore() => 42;
 
+  double get kmMoved {
+    final kilometerMapping = {
+      'cycling': 57.2,
+      'running': 12.8,
+      'swimming': 2.3,
+    };
+    return kilometerMapping[sport] ?? 42.0;
+  }
+
   DateTime get endsAt => startsAt.add(duration);
 
   bool get readyToStart => !started && _withinTenMinutesBeforeStarting;

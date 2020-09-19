@@ -1,3 +1,4 @@
+import 'package:app/challenges/activity_helpers.dart';
 import 'package:app/models/activity.dart';
 import 'package:app/models/challenge.dart';
 import 'package:app/util/datetime.dart';
@@ -18,7 +19,7 @@ class ParticipantsPage extends StatelessWidget {
                     activity.running ? BoxDecoration(color: Colors.grey) : null,
                 child: ListTile(
                   key: Key(activity.id),
-                  leading: _iconFor(activity),
+                  leading: iconFor(activity),
                   title: Text(activity.user.name),
                   subtitle: Text(_formatSubtitle(activity)),
                 ),
@@ -47,12 +48,3 @@ String _formatDiff(Duration diff) => printDuration(
       abbreviated: true,
       tersity: DurationTersity.minute,
     );
-
-Icon _iconFor(Activity activity) {
-  final icons = {
-    'cycling': Icons.directions_bike,
-    'running': Icons.directions_run,
-    'swimming': Icons.pool,
-  };
-  return Icon(icons[activity.sport] ?? Icons.hourglass_empty);
-}
