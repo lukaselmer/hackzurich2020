@@ -23,7 +23,7 @@ class ChallengesPage extends StatelessWidget {
           body: TabBarView(
             children: [
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
