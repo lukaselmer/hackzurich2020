@@ -13,17 +13,18 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Challenge',
         theme: ThemeData.dark().copyWith(
-            primaryColor: colors.black,
-            accentColor: colors.violet,
-            indicatorColor: Colors.white,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: colors.yellow,
-            ),
-            primaryTextTheme: TextTheme(
-              bodyText1: styles.bodyText1,
-              bodyText2: styles.bodyText2,
-            )),
+          primaryColor: colors.black,
+          accentColor: colors.violet,
+          indicatorColor: Colors.white,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: colors.yellow,
+          ),
+          primaryTextTheme: TextTheme(
+            bodyText1: styles.bodyText1,
+            bodyText2: styles.bodyText2,
+          ),
+        ),
         initialRoute: 'challenges',
         routes: {
           'challenges': (context) => ChallengesPage(),
