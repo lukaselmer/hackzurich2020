@@ -75,23 +75,22 @@ List<Activity> _activities() => [
     ];
 
 List<Comment> _comments() => [
-  Comment(
-    id: '1',
-    user_name: 'Marco',
-    text: 'Go Go Go 💪💪',
-  ),
-  Comment(
-    id: '2',
-    user_name: 'Lukas',
-    text: '🏃 run 👊 😎',
-  ),
-  Comment(
-    id: '3',
-    user_name: 'Marion',
-    text: 'already tired ? 🐌 I\'m waiting 📅',
-  ),
-];
-
+      Comment(
+        id: '1',
+        userName: 'Marco',
+        text: 'Go Go Go 💪💪',
+      ),
+      Comment(
+        id: '2',
+        userName: 'Lukas',
+        text: '🏃 run 👊 😎',
+      ),
+      Comment(
+        id: '3',
+        userName: 'Marion',
+        text: 'already tired ? 🐌 I\'m waiting 📅',
+      ),
+    ];
 
 final sports = ['cycling', 'running', 'swimming'];
 

@@ -18,7 +18,7 @@ class WallPage extends StatelessWidget {
                       key: Key(comment.id),
                       // leading: _iconFor(activity),
                       title: Text(comment.text),
-                      subtitle: Text('written by ${comment.user_name}'),
+                      subtitle: Text('written by ${comment.userName}'),
                     ),
                   ),
                 )
