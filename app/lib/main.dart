@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         initialRoute: 'challenges',
         routes: {
+          'login': (context) => LoginScreen(),
           'challenges': (context) => buildWidget(() => ChallengesPage()),
           'challenge': (context) => buildWidget(() => ChallengePage()),
         },

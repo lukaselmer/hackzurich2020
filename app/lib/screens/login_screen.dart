@@ -1,7 +1,7 @@
 import 'package:app/resources/firebase_repo.dart';
+import 'package:app/util/routing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:app/challenges/challenge_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,12 +11,14 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _repository = FirebaseRepository();
 
+  String _loginError = '';
   bool _isLoginPressed = false;
 
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Stack(
           children: [
+            if (_loginError.isNotEmpty) Center(child: Text(_loginError)),
             Center(child: loginButton()),
             _isLoginPressed
                 ? Center(child: CircularProgressIndicator())
@@ -40,10 +42,17 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
   void performLogin() async {
-    setState(() => _isLoginPressed = true);
+    setState(() {
+      _isLoginPressed = true;
+      _loginError = '';
+    });
 
-    final user = await _repository.signIn();
-    if (user != null) await authenticateUser(user);
+    try {
+      final user = await _repository.signIn();
+      if (user != null) await authenticateUser(user);
+    } on Exception catch (e) {
+      setState(() => _loginError = e.toString());
+    }
 
     setState(() => _isLoginPressed = false);
   }
@@ -51,11 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> authenticateUser(FirebaseUser user) async {
     final isNewUser = await _repository.userIsStored(user);
     if (isNewUser) await _repository.storeUser(user);
-
-    // ignore: unawaited_futures
-    Navigator.push<MaterialPageRoute>(
-      context,
-      MaterialPageRoute(builder: (context) => ChallengePage()),
-    );
+    popAll(context);
+    await Navigator.popAndPushNamed(context, 'challenges');
   }
 }
