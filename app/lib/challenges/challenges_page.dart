@@ -6,7 +6,7 @@ class ChallengesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBase(ListView(
-      children: challenges()
+      children: challenges
           .map<Widget>(
             (challenge) => ListTile(
               key: Key(challenge.id),
