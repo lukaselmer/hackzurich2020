@@ -12,9 +12,9 @@ Icon iconFor(Activity activity) {
 
 Color colorFor(Activity activity) {
   final icons = {
-    'cycling': Colors.lightBlue,
+    'cycling': Colors.blue,
     'running': Colors.orange,
-    'swimming': Colors.lightBlue,
+    'swimming': Colors.blue,
   };
   return icons[activity.sport] ?? Colors.black;
 }
