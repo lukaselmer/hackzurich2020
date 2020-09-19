@@ -242,6 +242,6 @@ Step _lastStep(Challenge challenge) => Step(
       type: Type.checkpoint,
       color: Colors.white,
       hour: formatHourAndMinute(challenge.endsAt),
-      icon: Icons.flag_outlined,
+      icon: Icons.outlined_flag,
       message: 'DONE!!!',
     );
