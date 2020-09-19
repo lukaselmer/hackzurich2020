@@ -22,10 +22,73 @@ class ChallengesPage extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
+<<<<<<< HEAD
               buildChallenges(context, upcomingChallenges()),
               buildChallenges(context, currentChallenges()),
               buildChallenges(context, pastChallenges()),
               buildChallenges(context, myChallenges()),
+=======
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_run),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_run),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_run),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_walk),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+>>>>>>> 417da66... dynamic data
             ],
           ),
           floatingActionButton: FloatingActionButton(
