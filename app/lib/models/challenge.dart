@@ -24,6 +24,8 @@ class Challenge {
       .map((activity) => activity.duration)
       .fold(Duration(), (value, element) => value + element);
 
+  bool get current => !ended;
+
   bool get running => started && !ended;
 
   bool get started => DateTime.now().isAfter(startsAt);

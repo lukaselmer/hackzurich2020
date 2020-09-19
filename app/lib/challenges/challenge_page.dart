@@ -18,10 +18,9 @@ class ChallengePage extends StatelessWidget {
             title: Text(challenge.challengeName),
             bottom: TabBar(
               tabs: [
-                // signup, participation, statistics
-                Tab(text: 'Progress'),
-                Tab(text: 'Participants'),
-                Tab(text: 'Join'),
+                Tab(text: 'PROGRESS'),
+                Tab(text: 'PARTICIPANTS'),
+                Tab(text: 'JOIN'),
               ],
             ),
           ),

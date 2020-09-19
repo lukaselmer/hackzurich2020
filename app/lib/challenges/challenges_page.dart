@@ -7,22 +7,20 @@ import 'package:flutter/material.dart';
 class ChallengesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DefaultTabController(
-        length: 4,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(text: 'Upcoming'),
-                Tab(text: 'Current'),
-                Tab(text: 'Past'),
-                Tab(text: 'Mine'),
+                Tab(text: 'CURRENT'),
+                Tab(text: 'PAST'),
+                Tab(text: 'MINE'),
               ],
             ),
             title: Text('Challenges'),
           ),
           body: TabBarView(
             children: [
-              buildChallenges(context, upcomingChallenges()),
               buildChallenges(context, currentChallenges()),
               buildChallenges(context, pastChallenges()),
               buildChallenges(context, myChallenges()),
