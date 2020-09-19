@@ -90,9 +90,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/poppinsel.ttf
-        - asset: assets/poppinssb.ttf
-          weight: 400
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/poppinsel.ttf
+  #       - asset: assets/poppinssb.ttf
+  #         weight: 400
