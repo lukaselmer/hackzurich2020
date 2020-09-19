@@ -13,9 +13,7 @@ class ProgressDetailsPage extends StatelessWidget {
   ProgressDetailsPage(this.challenge);
 
   @override
-  Widget build(BuildContext context) => Expanded(
-        child: _ActivityTimeline(challenge),
-      );
+  Widget build(BuildContext context) => _ActivityTimeline(challenge);
 }
 
 class _ActivityTimeline extends StatelessWidget {
