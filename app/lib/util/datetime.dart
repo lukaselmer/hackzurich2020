@@ -1,3 +1,6 @@
+String inHoursAndMinute(Duration duration) =>
+    '${_twoDigits(duration.inHours)}:${_twoDigits(duration.inMinutes % 60)}';
+
 String formatHourAndMinute(DateTime date) =>
     '${_twoDigits(date.hour)}:${_twoDigits(date.minute)}';
 
