@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Opacity(
                 opacity: 0.4,
                 child: Image.asset(
-                  "assets/swim.jpeg",
+                  'assets/swim.jpeg',
                   height: 1000,
                   fit: BoxFit.fitHeight,
                 ),

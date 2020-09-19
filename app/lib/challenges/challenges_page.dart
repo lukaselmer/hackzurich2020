@@ -6,12 +6,14 @@ import 'package:app/util/routing.dart';
 import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ChallengesPage extends StatelessWidget {
 //  final _repository = FirebaseRepository();
 
-  @override
+  // ignore: prefer_final_fields
   FirebaseRepository _repository = FirebaseRepository();
 
+  @override
   Widget build(BuildContext context) => DefaultTabController(
         length: 3,
         child: Scaffold(
