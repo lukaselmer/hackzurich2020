@@ -34,11 +34,14 @@ dependencies:
   meta:
   geolocator:
   pedantic:
+  gps:
   permission_handler: ^3.2.1+1
   cloud_firestore: ^0.13.5
   firebase_auth: ^0.16.1
   google_sign_in: ^4.5.1
   provider: ^4.0.5
+  google_fonts:
+  timeline_tile:
 
 dev_dependencies:
   flutter_test:
@@ -86,9 +89,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppinsel.ttf
-        - asset: assets/fonts/poppinssb.ttf
-          weight: 400
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/poppinsel.ttf
+  #       - asset: assets/fonts/poppinssb.ttf
+  #         weight: 400

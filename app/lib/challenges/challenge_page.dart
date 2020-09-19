@@ -1,4 +1,3 @@
-import 'package:app/challenges/join_page.dart';
 import 'package:app/challenges/participants_page.dart';
 import 'package:app/challenges/progress_page.dart';
 import 'package:app/models/challenge.dart';
@@ -12,14 +11,14 @@ class ChallengePage extends StatelessWidget {
   }
 
   Widget buildChallenge(Challenge challenge) => DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             title: Text("Challenge"),
             bottom: TabBar(
               tabs: [
                 Tab(text: 'PROGRESS'),
-                Tab(text: 'CHAT'),
+                // Tab(text: 'CHAT'),
                 Tab(text: 'PARTICIPANTS'),
               ],
             ),
@@ -27,7 +26,7 @@ class ChallengePage extends StatelessWidget {
           body: TabBarView(
             children: [
               ProgressPage(challenge),
-              JoinPage(challenge),
+              // JoinPage(challenge),
               ParticipantsPage(challenge),
             ],
           ),

@@ -21,6 +21,13 @@ class Activity {
 
   DateTime get endsAt => startsAt.add(duration);
 
+  bool get readyToStart => !started && _withinTenMinutesBeforeStarting;
+
+  bool get _withinTenMinutesBeforeStarting {
+    final tenMinutesAgo = startsAt.subtract(Duration(minutes: 10));
+    return DateTime.now().isAfter(tenMinutesAgo);
+  }
+
   bool get running => started && !ended;
 
   bool get started => DateTime.now().isAfter(startsAt);
