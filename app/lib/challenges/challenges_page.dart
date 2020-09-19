@@ -37,9 +37,51 @@ class ChallengesPage extends StatelessWidget {
                         ),
                       )
                       .toList()),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
-              Icon(Icons.directions_bike),
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_run),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_run),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_walk),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
             ],
           ),
         ),
