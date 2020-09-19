@@ -13,6 +13,9 @@ class JoinPage extends StatelessWidget {
   }
 
   Widget buildJoin(Challenge challenge) {
+    if (challenge.ended) {
+      return createWidgetFinished(challenge.challengeName);
+    }
     Widget rootContainer = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
@@ -52,4 +55,14 @@ class JoinPage extends StatelessWidget {
     );
     return rootContainer;
   }
+
+  Container createWidgetFinished(String challengeName) => Container(
+      padding: const EdgeInsets.all(64),
+      child: Text(
+        'Sorry the activity $challengeName is already finished',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
 }
