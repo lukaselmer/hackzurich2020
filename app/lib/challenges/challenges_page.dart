@@ -38,7 +38,7 @@ class ChallengesPage extends StatelessWidget {
                       )
                       .toList()),
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
@@ -53,7 +53,7 @@ class ChallengesPage extends StatelessWidget {
                       )
                       .toList()),
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
@@ -68,7 +68,7 @@ class ChallengesPage extends StatelessWidget {
                       )
                       .toList()),
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
