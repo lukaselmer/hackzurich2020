@@ -1,12 +1,14 @@
 import 'package:app/challenges/challenges_filter.dart';
 import 'package:app/models/challenge.dart';
-import 'package:app/resources/fbRepo.dart';
-import 'package:app/screens/loginScreen.dart';
+import 'package:app/resources/firebase_repo.dart';
 import 'package:app/util/datetime.dart';
+import 'package:app/util/routing.dart';
 import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 
 class ChallengesPage extends StatelessWidget {
+//  final _repository = FirebaseRepository();
+
   @override
   FirebaseRepository _repository = FirebaseRepository();
 
@@ -28,14 +30,9 @@ class ChallengesPage extends StatelessWidget {
                   Icons.exit_to_app,
                   color: Colors.white,
                 ),
-                onPressed: () {
-                  _repository.signOut();
-                  Navigator.push<MaterialPageRoute>(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => LoginScreen(),
-                    ),
-                  );
+                onPressed: () async {
+                  await _repository.signOut();
+                  await navigateTo(context, 'challenges');
                 },
               ),
             ],
@@ -68,10 +65,11 @@ class ChallengesPage extends StatelessWidget {
               title: Text(challenge.challengeName),
               subtitle: Text(challenge.teamName),
               trailing: Text(formatTrailing(challenge)),
-              onTap: () => Navigator.pushNamed(
+              onTap: () => navigateTo(
                 context,
                 'challenge',
                 arguments: challenge,
+                pop: false,
               ),
             ),
           )
