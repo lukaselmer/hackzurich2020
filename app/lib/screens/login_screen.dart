@@ -3,6 +3,8 @@ import 'package:app/util/routing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../config/custom_colors.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -16,23 +18,53 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Stack(
-          children: [
-            if (_loginError.isNotEmpty) Center(child: Text(_loginError)),
-            Center(child: loginButton()),
-            _isLoginPressed
-                ? Center(child: CircularProgressIndicator())
-                : Container()
-          ],
+        body: SafeArea(
+          child: Stack(
+            children: [
+              if (_loginError.isNotEmpty) Center(child: Text(_loginError)),
+              Opacity(
+                opacity: 0.4,
+                child: Image.asset(
+                  "assets/swim.jpeg",
+                  height: 1000,
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 170.0),
+                    child: Text(
+                      'remoTeam workOut',
+                      style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 1.2,
+                          color: yellow),
+                    ),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 70.0),
+                    child: Center(child: loginButton()),
+                  ),
+                ],
+              ),
+              _isLoginPressed
+                  ? Center(child: CircularProgressIndicator())
+                  : Container()
+            ],
+          ),
         ),
       );
 
   Widget loginButton() => FlatButton(
-        padding: EdgeInsets.all(35),
+        color: yellow,
+        padding: EdgeInsets.symmetric(horizontal: 70, vertical: 10),
         child: Text(
           'LOGIN',
           style: TextStyle(
-            fontSize: 35,
+            fontSize: 30,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.2,
           ),
