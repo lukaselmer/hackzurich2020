@@ -1,4 +1,5 @@
 import 'package:app/models/activity.dart';
+import 'package:app/models/comment.dart';
 import 'package:app/models/user.dart';
 import 'package:meta/meta.dart';
 
@@ -10,6 +11,7 @@ class Challenge {
   final DateTime startsAt;
   final List<User> users;
   final List<Activity> activities;
+  final List<Comment> comments;
 
   Challenge({
     @required this.id,
@@ -18,6 +20,7 @@ class Challenge {
     @required this.startsAt,
     @required this.users,
     @required this.activities,
+    @required this.comments,
   });
 
   Duration get totalDuration => activities

@@ -19,7 +19,7 @@ class ProgressPage extends StatelessWidget {
         children: [
           if (activity != null) ActivityPage(challenge, activity),
           ProgressDetailsPage(challenge),
-          WallPage(challenge)
+          WallPage(challenge, users)
         ],
       ),
     );
