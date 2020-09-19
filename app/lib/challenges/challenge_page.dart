@@ -11,7 +11,7 @@ class ChallengePage extends StatelessWidget {
   }
 
   Widget buildChallenge(Challenge challenge) => DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             title: Text(challenge.challengeName),
