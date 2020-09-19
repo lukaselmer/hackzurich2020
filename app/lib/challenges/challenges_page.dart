@@ -42,18 +42,21 @@ class ChallengesPage extends StatelessWidget {
     if (challenges.isEmpty) return Text('');
 
     return ListView(
-        children: challenges
-            .map<Widget>(
-              (challenge) => ListTile(
-                key: Key(challenge.id),
-                title: Text(challenge.challengeName),
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  'challenge',
-                  arguments: challenge,
-                ),
+      children: challenges
+          .map<Widget>(
+            (challenge) => ListTile(
+              key: Key(challenge.id),
+              title: Text(challenge.challengeName),
+              subtitle: Text(challenge.teamName),
+              trailing: Text("Starts in [x] days"),
+              onTap: () => Navigator.pushNamed(
+                context,
+                'challenge',
+                arguments: challenge,
               ),
-            )
-            .toList());
+            ),
+          )
+          .toList(),
+    );
   }
 }
