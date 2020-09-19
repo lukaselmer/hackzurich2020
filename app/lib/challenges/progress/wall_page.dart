@@ -9,17 +9,22 @@ class WallPage extends StatelessWidget {
   WallPage(this.challenge, this.users);
 
   @override
-  Widget build(BuildContext context) => ListView(
-      children: challenge.comments
-          .map<Widget>(
-            (comment) => Container(
-              child: ListTile(
-                key: Key(comment.id),
-                // leading: _iconFor(activity),
-                title: Text(comment.text),
-                subtitle: Text('written by ${comment.user_id}'),
+  Widget build(BuildContext context) {
+    // var result = Map<String, User>.fromIterable(users, key: (v) => v.[0], value: (v) => v[1]);
+    return Expanded(
+    child: ListView(
+        children: challenge.comments
+            .map<Widget>(
+              (comment) => Container(
+                child: ListTile(
+                  key: Key(comment.id),
+                  // leading: _iconFor(activity),
+                  title: Text(comment.text),
+                  subtitle: Text('written by ${comment.user_name}'),
+                ),
               ),
-            ),
-          )
-          .toList());
+            )
+            .toList()),
+  );
+  }
 }

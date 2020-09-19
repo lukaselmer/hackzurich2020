@@ -77,18 +77,18 @@ List<Activity> _activities() => [
 List<Comment> _comments() => [
   Comment(
     id: '1',
-    user_id: '1',
-    text: 'Go Go go',
+    user_name: 'Marco',
+    text: 'Go Go Go 💪💪',
   ),
   Comment(
     id: '2',
-    user_id: '2',
-    text: 'Duration(hours: 1, minutes: 30)',
+    user_name: 'Lukas',
+    text: '🏃 run 👊 😎',
   ),
   Comment(
     id: '3',
-    user_id: '3',
-    text: 'already tired ?',
+    user_name: 'Marion',
+    text: 'already tired ? 🐌 I\'m waiting 📅',
   ),
 ];
 
