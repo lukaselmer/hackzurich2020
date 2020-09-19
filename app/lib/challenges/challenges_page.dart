@@ -1,5 +1,6 @@
 import 'package:app/challenges/app_base.dart';
 import 'package:app/data/challenges.dart';
+import 'package:app/models/challenge.dart';
 import 'package:flutter/material.dart';
 
 class ChallengesPage extends StatelessWidget {
@@ -24,6 +25,7 @@ class ChallengesPage extends StatelessWidget {
             children: [
               ListView(
                   children: challenges
+                  .where((element) => (DateTime.now().isAfter(element.startingAt )))
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
@@ -36,22 +38,11 @@ class ChallengesPage extends StatelessWidget {
                         ),
                       )
                       .toList()),
+              if (buildList(context, challenges).isNotEmpty)
+                ListView(children: buildList(context, challenges)),
               ListView(
                   children: challenges
-                      .map<Widget>(
-                        (challenge) => ListTile(
-                          key: Key(challenge.id),
-                          title: Text(challenge.challengeName),
-                          onTap: () => Navigator.pushNamed(
-                            context,
-                            'challenge',
-                            arguments: challenge,
-                          ),
-                        ),
-                      )
-                      .toList()),
-              ListView(
-                  children: challenges
+                      .where((element) => (DateTime.now().isBefore(element.startingAt )))
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
@@ -83,5 +74,22 @@ class ChallengesPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> buildList(BuildContext context, List<Challenge> challenges) {
+    return challenges
+                    .where((element) => (DateTime.now().isAfter(element.startingAt ) && DateTime.now().isBefore(element.startingAt.add(element.totalDuration))))
+                    .map<Widget>(
+                      (challenge) => ListTile(
+                        key: Key(challenge.id),
+                        title: Text(challenge.challengeName),
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          'challenge',
+                          arguments: challenge,
+                        ),
+                      ),
+                    )
+                    .toList();
   }
 }
