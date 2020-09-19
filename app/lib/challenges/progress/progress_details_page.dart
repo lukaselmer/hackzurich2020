@@ -137,7 +137,10 @@ class _RightChildTimeline extends StatelessWidget {
                   text: step.message,
                   style: step.isCheckpoint
                       ? timelineText.apply(color: step.color)
-                      : timelineText.apply(color: Colors.white),
+                      : timelineText.apply(
+                          color: step.currentlyActive
+                              ? Colors.orange
+                              : Colors.white),
                 ),
                 if (step.duration != null)
                   TextSpan(
@@ -182,7 +185,16 @@ enum Type {
   line,
 }
 
+@immutable
 class Step {
+  final Type type;
+  final String hour;
+  final String message;
+  final int duration;
+  final Color color;
+  final IconData icon;
+  final bool currentlyActive;
+
   Step({
     this.type,
     this.hour,
@@ -190,14 +202,8 @@ class Step {
     this.duration,
     this.color,
     this.icon,
+    this.currentlyActive,
   });
-
-  final Type type;
-  final String hour;
-  final String message;
-  final int duration;
-  final Color color;
-  final IconData icon;
 
   bool get isCheckpoint => type == Type.checkpoint;
 
@@ -221,8 +227,14 @@ Iterable<Step> _toStep(Activity activity) => [
         color: colorFor(activity),
         hour: ' ',
         icon: iconFor(activity).icon,
-        message: '''${activity.user.name} moved '''
-            '''${activity.kmMoved} km!''',
+        message: !activity.started
+            ? '''${activity.user.name} will be ${activity.sport}.\nWanna join!?'''
+            : activity.running
+                ? '''${activity.user.name} has already moved '''
+                    '''${activity.kmMoved} km!'''
+                : '''${activity.user.name} moved '''
+                    '''${activity.kmMoved} km!''',
+        currentlyActive: activity.running,
       ),
     ];
 
