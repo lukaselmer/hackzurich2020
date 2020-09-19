@@ -1,5 +1,5 @@
 import 'package:app/challenges/join_page.dart';
-import 'package:app/challenges/participate_page.dart';
+import 'package:app/challenges/participants_page.dart';
 import 'package:app/challenges/progress_page.dart';
 import 'package:app/models/challenge.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +20,17 @@ class ChallengePage extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               // signup, participation, statistics
-              Tab(text: 'Join'),
-              Tab(text: 'Participate'),
               Tab(text: 'Progress'),
+              Tab(text: 'Participants'),
+              Tab(text: 'Join'),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            JoinPage(challenge),
-            ParticipatePage(challenge),
             ProgressPage(challenge),
+            ParticipantsPage(challenge),
+            JoinPage(challenge),
           ],
         ),
       ),

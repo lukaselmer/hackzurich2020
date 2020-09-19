@@ -48,23 +48,25 @@ List<User> _users() => [
 List<Activity> _activities() => [
       Activity(
         id: '1',
-        sport: 'swimming',
+        sport: sports[2],
         duration: Duration(hours: 1),
         startingAt: _baseTime,
         user: users[0],
       ),
       Activity(
         id: '2',
-        sport: 'running',
+        sport: sports[1],
         duration: Duration(hours: 1, minutes: 30),
         startingAt: _baseTime.add(Duration(hours: 1)),
         user: users[1],
       ),
       Activity(
         id: '3',
-        sport: 'cycling',
+        sport: sports[0],
         duration: Duration(hours: 2, minutes: 30),
         startingAt: _baseTime.add(Duration(hours: 3, minutes: 30)),
         user: users[3],
       ),
     ];
+
+final sports = ['cycling', 'running', 'swimming'];
