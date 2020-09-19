@@ -70,3 +70,7 @@ List<Activity> _activities() => [
     ];
 
 final sports = ['cycling', 'running', 'swimming'];
+
+Activity activityReadyToStart(User currentUser, Challenge challenge) {
+  // TODO: implement this
+}

@@ -19,7 +19,7 @@ class ChallengePage extends StatelessWidget {
             bottom: TabBar(
               tabs: [
                 Tab(text: 'PROGRESS'),
-                Tab(text: 'CHAT'),
+                // Tab(text: 'CHAT'),
                 Tab(text: 'PARTICIPANTS'),
               ],
             ),
@@ -27,7 +27,7 @@ class ChallengePage extends StatelessWidget {
           body: TabBarView(
             children: [
               ProgressPage(challenge),
-              JoinPage(challenge),
+              // JoinPage(challenge),
               ParticipantsPage(challenge),
             ],
           ),
