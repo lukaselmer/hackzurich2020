@@ -5,20 +5,61 @@ import 'package:flutter/material.dart';
 class ChallengesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBase(ListView(
-      children: challenges()
-          .map<Widget>(
-            (challenge) => ListTile(
-              key: Key(challenge.id),
-              title: Text(challenge.challengeName),
-              onTap: () => Navigator.pushNamed(
-                context,
-                'challenge',
-                arguments: challenge,
-              ),
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(text: 'Upcoming'),
+                Tab(text: 'Current'),
+                Tab(text: 'Past'),
+                Tab(text: 'Mine'),
+              ],
             ),
-          )
-          .toList(),
-    ));
+            title: Text('Challenges'),
+          ),
+          body: TabBarView(
+            children: [
+              ListView(
+                  children: challenges()
+                      .map<Widget>(
+                        (challenge) => ListTile(
+                          key: Key(challenge.id),
+                          leading: Icon(Icons.directions_run),
+                          title: Text(challenge.challengeName),
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            'challenge',
+                            arguments: challenge,
+                          ),
+                        ),
+                      )
+                      .toList()),
+              Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+              Icon(Icons.directions_bike),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
+
+// ListView(
+//       children: challenges()
+// .map<Widget>(
+//   (challenge) => ListTile(
+//     key: Key(challenge.id),
+//     title: Text(challenge.challengeName),
+//     onTap: () => Navigator.pushNamed(
+//       context,
+//       'challenge',
+//       arguments: challenge,
+//     ),
+//   ),
+// )
+// .toList(),
+//     )
