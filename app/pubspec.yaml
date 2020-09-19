@@ -29,8 +29,6 @@ dependencies:
   cupertino_icons:
   duration:
   camera:
-  path_provider:
-  path:
   meta:
   geolocator:
   pedantic:
