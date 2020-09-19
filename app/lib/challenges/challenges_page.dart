@@ -27,7 +27,6 @@ class ChallengesPage extends StatelessWidget {
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
-                          leading: Icon(Icons.directions_run),
                           title: Text(challenge.challengeName),
                           onTap: () => Navigator.pushNamed(
                             context,
@@ -38,11 +37,10 @@ class ChallengesPage extends StatelessWidget {
                       )
                       .toList()),
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
-                          leading: Icon(Icons.directions_run),
                           title: Text(challenge.challengeName),
                           onTap: () => Navigator.pushNamed(
                             context,
@@ -53,11 +51,10 @@ class ChallengesPage extends StatelessWidget {
                       )
                       .toList()),
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
-                          leading: Icon(Icons.directions_run),
                           title: Text(challenge.challengeName),
                           onTap: () => Navigator.pushNamed(
                             context,
@@ -68,11 +65,10 @@ class ChallengesPage extends StatelessWidget {
                       )
                       .toList()),
               ListView(
-                  children: challenges()
+                  children: challenges
                       .map<Widget>(
                         (challenge) => ListTile(
                           key: Key(challenge.id),
-                          leading: Icon(Icons.directions_walk),
                           title: Text(challenge.challengeName),
                           onTap: () => Navigator.pushNamed(
                             context,
@@ -89,19 +85,3 @@ class ChallengesPage extends StatelessWidget {
     );
   }
 }
-
-// ListView(
-//       children: challenges()
-// .map<Widget>(
-//   (challenge) => ListTile(
-//     key: Key(challenge.id),
-//     title: Text(challenge.challengeName),
-//     onTap: () => Navigator.pushNamed(
-//       context,
-//       'challenge',
-//       arguments: challenge,
-//     ),
-//   ),
-// )
-// .toList(),
-//     )
