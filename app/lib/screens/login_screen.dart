@@ -1,4 +1,4 @@
-import 'package:app/resources/firebase_repo.dart';
+import 'package:app/resources/firebase_repository.dart';
 import 'package:app/util/routing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _repository = FirebaseRepository();
+  final _repository = FirebaseRepository.instance;
 
   String _loginError = '';
   bool _isLoginPressed = false;

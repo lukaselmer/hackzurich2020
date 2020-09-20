@@ -2,18 +2,37 @@ import 'package:app/challenges/activity_helpers.dart';
 import 'package:app/config/text_styles.dart';
 import 'package:app/models/activity.dart';
 import 'package:app/models/challenge.dart';
+import 'package:app/resources/firebase_repository.dart';
 import 'package:app/util/datetime.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class ProgressDetailsPage extends StatelessWidget {
   final Challenge challenge;
+  final _repo = FirebaseRepository.instance;
+  final _picker = ImagePicker();
 
   ProgressDetailsPage(this.challenge);
 
   @override
-  Widget build(BuildContext context) => _ActivityTimeline(challenge);
+  Widget build(BuildContext context) {
+    final activity = challenge.currentActivity;
+    return Scaffold(
+      body: _ActivityTimeline(challenge),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _pickImage(activity),
+        tooltip: 'Pick Image',
+        child: Icon(Icons.add_a_photo),
+      ),
+    );
+  }
+
+  Future<void> _pickImage(Activity activity) async {
+    final pickedFile = await _picker.getImage(source: ImageSource.camera);
+    await _repo.storeActivityImage(activity, pickedFile.path);
+  }
 }
 
 class _ActivityTimeline extends StatelessWidget {
@@ -144,10 +163,22 @@ class _RightChildTimeline extends StatelessWidget {
                   TextSpan(
                     text: '  ${step.duration} min',
                     style: timelineText.apply(color: const Color(0xFFF2F2F2)),
-                  )
+                  ),
               ]),
             ),
-          )
+          ),
+          if (step.imageUrlFuture != null)
+            FutureBuilder<String>(
+                future: step.imageUrlFuture,
+                initialData: '',
+                builder: (context, snapshot) => snapshot.data == null
+                    ? Container()
+                    : Center(
+                        child: Image.network(
+                          snapshot.data,
+                          height: 130,
+                        ),
+                      )),
         ],
       ),
     );
@@ -192,6 +223,7 @@ class Step {
   final Color color;
   final IconData icon;
   final bool currentlyActive;
+  final Future<String> imageUrlFuture;
 
   Step({
     this.type,
@@ -201,6 +233,7 @@ class Step {
     this.color,
     this.icon,
     this.currentlyActive,
+    this.imageUrlFuture,
   });
 
   bool get isCheckpoint => type == Type.checkpoint;
@@ -233,6 +266,8 @@ Iterable<Step> _toStep(Activity activity) => [
                 : '''${activity.user.name} moved '''
                     '''${activity.kmMoved} km in  ${activity.user.flag}!''',
         currentlyActive: activity.running,
+        imageUrlFuture:
+            FirebaseRepository.instance.loadActivityImageUrl(activity),
       ),
     ];
 

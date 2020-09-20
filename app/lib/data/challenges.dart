@@ -105,3 +105,6 @@ Activity activityReadyToStart(User currentUser, Challenge challenge) =>
       (element) => element.user.id == currentUser.id && element.readyToStart,
       orElse: () => null,
     );
+
+String activityPictureStoragePath(Activity activity) =>
+    'activities/${activity.id}.jpg';

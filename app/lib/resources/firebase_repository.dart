@@ -1,14 +1,22 @@
+import 'dart:io';
+
+import 'package:app/data/challenges.dart';
+import 'package:app/models/activity.dart';
 import 'package:app/util/string.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../models/user.dart';
 
-class FirebaseMethods {
+class FirebaseRepository {
+  static final FirebaseRepository instance = FirebaseRepository();
+
   final _auth = FirebaseAuth.instance;
   final _googleSignIn = GoogleSignIn();
-  static final Firestore firestore = Firestore.instance;
+  final Firestore _firestore = Firestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   User user = User();
 
@@ -39,7 +47,7 @@ class FirebaseMethods {
   }
 
   Future<bool> userIsStored(FirebaseUser user) async {
-    final result = await firestore
+    final result = await _firestore
         .collection('users')
         .where('email', isEqualTo: user.email)
         .getDocuments();
@@ -57,9 +65,26 @@ class FirebaseMethods {
       username: username,
     );
 
-    await firestore
+    await _firestore
         .collection('users')
         .document(currentUser.uid)
         .setData(user.toMap(user));
+  }
+
+  Future<void> storeActivityImage(Activity activity, String imagePath) async {
+    final storagePath = activityPictureStoragePath(activity);
+    final upload = _storage.ref().child(storagePath).putFile(File(imagePath));
+    await upload.onComplete;
+  }
+
+  Future<String> loadActivityImageUrl(Activity activity) async {
+    final storagePath = activityPictureStoragePath(activity);
+    try {
+      final dynamic url =
+          await _storage.ref().child(storagePath).getDownloadURL();
+      return url as String;
+    } on Exception {
+      return null;
+    }
   }
 }

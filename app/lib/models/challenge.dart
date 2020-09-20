@@ -38,4 +38,9 @@ class Challenge {
   DateTime get endsAt => _lastActivity?.endsAt ?? startsAt;
 
   Activity get _lastActivity => activities.isEmpty ? null : activities.last;
+
+  Activity get currentActivity => activities.firstWhere(
+        (element) => element.running,
+        orElse: () => null,
+      );
 }

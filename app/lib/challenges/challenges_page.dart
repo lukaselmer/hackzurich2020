@@ -1,13 +1,13 @@
 import 'package:app/challenges/challenges_filter.dart';
 import 'package:app/models/challenge.dart';
-import 'package:app/resources/firebase_repo.dart';
+import 'package:app/resources/firebase_repository.dart';
 import 'package:app/util/datetime.dart';
 import 'package:app/util/routing.dart';
 import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 
 class ChallengesPage extends StatelessWidget {
-  final _repository = FirebaseRepository();
+  final _repository = FirebaseRepository.instance;
 
   @override
   Widget build(BuildContext context) => DefaultTabController(

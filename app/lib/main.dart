@@ -1,5 +1,5 @@
 import 'package:app/challenges/challenge_page.dart';
-import 'package:app/resources/firebase_repo.dart';
+import 'package:app/resources/firebase_repository.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _repository = FirebaseRepository();
+  final _repository = FirebaseRepository.instance;
 
   @override
   Widget build(BuildContext context) => MaterialApp(
