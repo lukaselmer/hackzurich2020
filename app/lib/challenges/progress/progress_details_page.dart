@@ -22,16 +22,17 @@ class ProgressDetailsPage extends StatelessWidget {
     return Scaffold(
       body: _ActivityTimeline(challenge),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _pickImage(activity),
+        onPressed: () => _pickImage(context, activity),
         tooltip: 'Pick Image',
         child: Icon(Icons.add_a_photo),
       ),
     );
   }
 
-  Future<void> _pickImage(Activity activity) async {
+  Future<void> _pickImage(BuildContext context, Activity activity) async {
     final pickedFile = await _picker.getImage(source: ImageSource.camera);
     await _repo.storeActivityImage(activity, pickedFile.path);
+    await Navigator.popAndPushNamed(context, 'challenge', arguments: challenge);
   }
 }
 
