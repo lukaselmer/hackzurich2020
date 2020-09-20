@@ -44,11 +44,36 @@ List<Challenge> _challenges() => [
     ];
 
 List<User> _users() => [
-      User(id: '1', name: 'Marion', flag: '🇮🇳'),
-      User(id: '2', name: 'Marco', flag: '🇮🇹'),
-      User(id: '3', name: 'Christof', flag: '🇨🇭'),
-      User(id: '4', name: 'Lukas', flag: '🇨🇭'),
-      User(id: '5', name: 'Shivam', flag: '🇮🇳'),
+      User(
+        id: '1',
+        flag: '🇮🇳',
+        name: 'Marion',
+        email: 'pascal.langenstein@gmail.com',
+      ),
+      User(
+        id: '2',
+        flag: '🇮🇹',
+        name: 'Marco',
+        email: 'lukas.elmer@gmail.com',
+      ),
+      User(
+        id: '3',
+        flag: '🇨🇭',
+        name: 'Christof',
+        email: 'christof.buechi@gmail.com',
+      ),
+      User(
+        id: '4',
+        flag: '🇨🇭',
+        name: 'Lukas',
+        email: 'lukas.elmer@gmail.com',
+      ),
+      User(
+        id: '5',
+        flag: '🇮🇳',
+        name: 'Shivam',
+        email: 'shivam.goraksha.s@gmail.com',
+      ),
     ];
 
 List<Activity> _activities() => [

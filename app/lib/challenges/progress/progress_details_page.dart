@@ -58,6 +58,7 @@ class _ActivityTimeline extends StatelessWidget {
                     Expanded(
                       child: _TimelineActivity(
                         steps: _generateSteps(_challenge),
+                        challenge: _challenge,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -71,9 +72,14 @@ class _ActivityTimeline extends StatelessWidget {
 }
 
 class _TimelineActivity extends StatelessWidget {
-  const _TimelineActivity({Key key, this.steps}) : super(key: key);
+  const _TimelineActivity({
+    Key key,
+    this.steps,
+    this.challenge,
+  }) : super(key: key);
 
   final List<Step> steps;
+  final Challenge challenge;
 
   @override
   Widget build(BuildContext context) => ListView.builder(
@@ -83,7 +89,7 @@ class _TimelineActivity extends StatelessWidget {
           final step = steps[index];
 
           final indicator = step.isCheckpoint
-              ? _indicatorStyleCheckpoint(step)
+              ? _indicatorStyleCheckpoint(context, step)
               : const IndicatorStyle(width: 0);
 
           final righChild = _RightChildTimeline(step: step);
@@ -110,21 +116,29 @@ class _TimelineActivity extends StatelessWidget {
         },
       );
 
-  IndicatorStyle _indicatorStyleCheckpoint(Step step) => IndicatorStyle(
+  IndicatorStyle _indicatorStyleCheckpoint(BuildContext context, Step step) =>
+      IndicatorStyle(
         width: 46,
         height: 100,
-        indicator: Container(
-          decoration: BoxDecoration(
-            color: step.color,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(20),
-            ),
+        indicator: GestureDetector(
+          onTap: () => Navigator.pushNamed(
+            context,
+            'success',
+            arguments: challenge,
           ),
-          child: Center(
-            child: Icon(
-              step.icon,
-              color: const Color(0xFF1D1E20),
-              size: 30,
+          child: Container(
+            decoration: BoxDecoration(
+              color: step.color,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+            child: Center(
+              child: Icon(
+                step.icon,
+                color: const Color(0xFF1D1E20),
+                size: 30,
+              ),
             ),
           ),
         ),
@@ -251,6 +265,7 @@ class Step {
   final Color color;
   final IconData icon;
   final bool currentlyActive;
+  final bool isLast;
   final Future<String> imageUrlFuture;
 
   Step({
@@ -262,6 +277,7 @@ class Step {
     this.icon,
     this.currentlyActive,
     this.imageUrlFuture,
+    this.isLast,
   });
 
   bool get isCheckpoint => type == Type.checkpoint;
@@ -305,4 +321,5 @@ Step _lastStep(Challenge challenge) => Step(
       hour: formatHourAndMinute(challenge.endsAt),
       icon: Icons.outlined_flag,
       message: 'DONE!!!',
+      isLast: true,
     );

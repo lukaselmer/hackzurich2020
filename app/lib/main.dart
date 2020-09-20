@@ -1,6 +1,7 @@
 import 'package:app/challenges/challenge_page.dart';
 import 'package:app/resources/firebase_repository.dart';
 import 'package:app/screens/login_screen.dart';
+import 'package:app/success/success_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/config/custom_colors.dart' as colors;
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
           'login': (context) => LoginScreen(),
           'challenges': (context) => buildWidget(() => ChallengesPage()),
           'challenge': (context) => buildWidget(() => ChallengePage()),
+          'success': (context) => buildWidget(() => SuccessPage()),
         },
       );
 
