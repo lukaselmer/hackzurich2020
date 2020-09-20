@@ -173,16 +173,43 @@ class _RightChildTimeline extends StatelessWidget {
                 initialData: '',
                 builder: (context, snapshot) => snapshot.data == null
                     ? Container()
-                    : Center(
-                        child: Image.network(
-                          snapshot.data,
-                          height: 130,
+                    : GestureDetector(
+                        onTap: () => showDialog<ImageDialog>(
+                          context: context,
+                          builder: (_) => ImageDialog(snapshot.data),
+                        ),
+                        child: Center(
+                          child: Image.network(
+                            snapshot.data,
+                            height: 130,
+                          ),
                         ),
                       )),
         ],
       ),
     );
   }
+}
+
+class ImageDialog extends StatelessWidget {
+  final String url;
+
+  ImageDialog(this.url);
+
+  @override
+  Widget build(BuildContext context) => Dialog(
+        child: Container(
+          width: 300,
+          height: 300,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            image: DecorationImage(
+              image: Image.network(url).image,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      );
 }
 
 class _LeftChildTimeline extends StatelessWidget {
