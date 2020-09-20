@@ -1,4 +1,5 @@
 import 'package:app/models/challenge.dart';
+import 'package:app/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gravatar/simple_gravatar.dart';
 
@@ -12,11 +13,7 @@ class SuccessPage extends StatelessWidget {
         ..putIfAbsent(element.sport, () => 0)
         ..[element.sport] += element.kmMoved,
     );
-    final names = challenge.activities.map((el) => el.user.name).join(', ');
-    final emails = challenge.activities.map((el) => el.user.email);
-    final gravatars = emails.map(
-      (email) => Gravatar(email).imageUrl(size: 100),
-    );
+    final users = challenge.activities.map((activity) => activity.user);
 
     return Scaffold(
       body: Center(
@@ -32,19 +29,24 @@ class SuccessPage extends StatelessWidget {
               style: TextStyle(fontSize: 180),
             ),
             Text(' '),
-            Text(
-              names,
-              style: TextStyle(fontSize: 25),
-            ),
             Padding(
               padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: gravatars
+                children: users
                     .map(
-                      (url) => ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Image.network(url),
+                      (user) => Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.network(_gravatar(user)),
+                          ),
+                          Text(' ', style: TextStyle(fontSize: 8)),
+                          Text(user.name, style: TextStyle(fontSize: 20)),
+                          Text(' ', style: TextStyle(fontSize: 8)),
+                          Text('🏅', style: TextStyle(fontSize: 60)),
+                          Text(' ', style: TextStyle(fontSize: 8)),
+                        ],
                       ),
                     )
                     .toList(),
@@ -55,13 +57,11 @@ class SuccessPage extends StatelessWidget {
                   style: TextStyle(fontSize: 25),
                 )),
             Text(' '),
-            Text(
-              '💪💪💪',
-              style: TextStyle(fontSize: 80),
-            ),
           ],
         ),
       ),
     );
   }
 }
+
+String _gravatar(User user) => Gravatar(user.email).imageUrl(size: 100);
