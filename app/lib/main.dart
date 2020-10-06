@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:app/challenges/challenge_page.dart';
 import 'package:app/resources/firebase_repository.dart';
 import 'package:app/screens/login_screen.dart';
@@ -8,7 +9,11 @@ import 'package:app/config/custom_colors.dart' as colors;
 import 'package:app/config/text_styles.dart' as styles;
 import 'challenges/challenges_page.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override

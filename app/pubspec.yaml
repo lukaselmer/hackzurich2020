@@ -36,13 +36,15 @@ dependencies:
   pedantic:
   google_fonts:
   timeline_tile:
-  cloud_firestore: ^0.13.5
+  cloud_firestore:
   firebase_storage:
   image_picker:
   simple_gravatar:
-  firebase_auth: ^0.16.1
+  firebase_auth:
   google_sign_in: ^4.5.1
   provider: ^4.0.5
+  firebase_core: ^0.5.0
+  firebase_crashlytics: ^0.2.1
 
 dev_dependencies:
   flutter_test:
